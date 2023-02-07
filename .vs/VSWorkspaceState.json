@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TicketProject",
+    "\\TicketProject\\Interfaces",
+    "\\TicketProject\\Models",
+    "\\TicketProject\\obj\\Debug",
+    "\\TicketProject\\obj\\Release",
+    "\\TicketProject\\Repositories",
+    "\\TicketProject\\SeedData"
+  ],
+  "SelectedNode": "\\TicketProject\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

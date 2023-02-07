@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\first\\source\\repos\\TicketProject\\TicketProject\\TicketProject.csproj": {}
+    "D:\\Work\\GitHub Desktop\\Odoo\\TicketProject\\TicketProject\\TicketProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\first\\source\\repos\\TicketProject\\TicketProject\\TicketProject.csproj": {
+    "D:\\Work\\GitHub Desktop\\Odoo\\TicketProject\\TicketProject\\TicketProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\first\\source\\repos\\TicketProject\\TicketProject\\TicketProject.csproj",
+        "projectUniqueName": "D:\\Work\\GitHub Desktop\\Odoo\\TicketProject\\TicketProject\\TicketProject.csproj",
         "projectName": "TicketProject",
-        "projectPath": "C:\\Users\\first\\source\\repos\\TicketProject\\TicketProject\\TicketProject.csproj",
+        "projectPath": "D:\\Work\\GitHub Desktop\\Odoo\\TicketProject\\TicketProject\\TicketProject.csproj",
         "packagesPath": "C:\\Users\\first\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\first\\source\\repos\\TicketProject\\TicketProject\\obj\\",
+        "outputPath": "D:\\Work\\GitHub Desktop\\Odoo\\TicketProject\\TicketProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\first\\AppData\\Roaming\\NuGet\\NuGet.Config",

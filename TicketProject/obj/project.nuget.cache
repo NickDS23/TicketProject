@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0K0ogI2Jsg+HnRywV1aD9EnFuPjq/LuliskPXmcWZJ4yUeXr5L/S9CxWMbLm4nczNrp3DI/2tCPQRxvH8o/Nvw==",
+  "dgSpecHash": "f6ViSvUo9N2H+Ad7ELEk8e0+gdnW9iQRjILsRflYXczz8l8hrotvupcBJwEc6Xja/ozbQwSFn49J2ChqbLeiRQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\first\\source\\repos\\TicketProject\\TicketProject\\TicketProject.csproj",
+  "projectFilePath": "D:\\Work\\GitHub Desktop\\Odoo\\TicketProject\\TicketProject\\TicketProject.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\first\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\first\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

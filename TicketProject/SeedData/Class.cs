@@ -13,7 +13,7 @@ public static class SeedData
         {
             if (context == null || context.Ticket == null)
             {
-                throw new ArgumentNullException("Null RazorPagesMovieContext");
+                throw new ArgumentNullException("Null RazorPagesContext");
             }
 
             
