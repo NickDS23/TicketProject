@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using TicketProject.Data;
 using TicketProject.Models;
+using ctr = TicketProject.Controlles;
 
 namespace TicketProject.Pages.Tickets
 {
@@ -23,20 +24,11 @@ namespace TicketProject.Pages.Tickets
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Ticket == null)
-            {
-                return NotFound();
-            }
+            var contr = new ctr.TicketsController(_context);
+            var s = await contr.Details(id);
 
-            var ticket = await _context.Ticket.FirstOrDefaultAsync(m => m.Id == id);
-            if (ticket == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                Ticket = ticket;
-            }
+            Ticket = s;
+
             return Page();
         }
     }

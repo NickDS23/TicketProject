@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TicketProject.Data;
 using TicketProject.Models;
+using actions = TicketProject.Actions;
+
 
 namespace TicketProject.Controlles
 {
@@ -28,21 +30,26 @@ namespace TicketProject.Controlles
         }
 
         // GET: Tickets/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<Ticket> Details(int? id)
         {
-            if (id == null || _context.Ticket == null)
-            {
-                return NotFound();
-            }
+            var detail = new actions.DetailsAction();
+            var s = await detail.OnGetAsync(id, _context);
 
-            var ticket = await _context.Ticket
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (ticket == null)
-            {
-                return NotFound();
-            }
+            return detail.Ticket;
+           
+            //if (id == null || _context.Ticket == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return View(ticket);
+            //var ticket = await _context.Ticket
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            //if (ticket == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //return View(ticket);
         }
 
         // GET: Tickets/Create
