@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TicketProject.Data;
 using TicketProject.Models;
+using ctr = TicketProject.Controlles;
 
 namespace TicketProject.Pages.Tickets
 {
@@ -25,17 +26,9 @@ namespace TicketProject.Pages.Tickets
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Ticket == null)
-            {
-                return NotFound();
-            }
+            var res = new ctr.TicketsController(_context);
+            await res.EditGet(id);
 
-            var ticket =  await _context.Ticket.FirstOrDefaultAsync(m => m.Id == id);
-            if (ticket == null)
-            {
-                return NotFound();
-            }
-            Ticket = ticket;
             return Page();
         }
 
@@ -43,35 +36,11 @@ namespace TicketProject.Pages.Tickets
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            var res = new ctr.TicketsController(_context);
+            await res.EditPost(Ticket.Id, Ticket);
 
-            _context.Attach(Ticket).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TicketExists(Ticket.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
             return RedirectToPage("./Index");
-        }
-
-        private bool TicketExists(int id)
-        {
-          return (_context.Ticket?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

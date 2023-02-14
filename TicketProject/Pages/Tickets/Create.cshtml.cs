@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using TicketProject.Data;
 using TicketProject.Models;
+using ctr  = TicketProject.Controlles;
 
 namespace TicketProject.Pages.Tickets
 {
@@ -21,7 +22,8 @@ namespace TicketProject.Pages.Tickets
 
         public IActionResult OnGet()
         {
-            return Page();
+           var res = new ctr.TicketsController(_context); 
+           return res.OnGetCreate();
         }
 
         [BindProperty]
@@ -31,13 +33,8 @@ namespace TicketProject.Pages.Tickets
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Ticket == null || Ticket == null)
-            {
-                return Page();
-            }
-
-            _context.Ticket.Add(Ticket);
-            await _context.SaveChangesAsync();
+            var res = new ctr.TicketsController(_context);
+            await res.Create(Ticket);
 
             return RedirectToPage("./Index");
         }

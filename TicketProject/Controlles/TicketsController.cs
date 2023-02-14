@@ -36,26 +36,13 @@ namespace TicketProject.Controlles
             var s = await detail.OnGetAsync(id, _context);
 
             return detail.Ticket;
-           
-            //if (id == null || _context.Ticket == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var ticket = await _context.Ticket
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            //if (ticket == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return View(ticket);
         }
 
         // GET: Tickets/Create
-        public IActionResult Create()
+        public IActionResult OnGetCreate()
         {
-            return View();
+            var v = new actions.CreateAction();
+            return v.OnGet();
         }
 
         // POST: Tickets/Create
@@ -65,29 +52,19 @@ namespace TicketProject.Controlles
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Time,Description")] Ticket ticket)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(ticket);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(ticket);
+            var res = new actions.CreateAction();
+            await res.OnPostAsync(_context, ticket);
+
+            return View();
         }
 
         // GET: Tickets/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> EditGet(int? id)
         {
-            if (id == null || _context.Ticket == null)
-            {
-                return NotFound();
-            }
+            var res = new actions.EditAction();
+            await res.OnGetAsync(id, _context);
 
-            var ticket = await _context.Ticket.FindAsync(id);
-            if (ticket == null)
-            {
-                return NotFound();
-            }
-            return View(ticket);
+            return View();
         }
 
         // POST: Tickets/Edit/5
@@ -95,52 +72,21 @@ namespace TicketProject.Controlles
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Time,Description")] Ticket ticket)
+        public async Task<IActionResult> EditPost(int id, [Bind("Id,Title,Time,Description")] Ticket ticket)
         {
-            if (id != ticket.Id)
-            {
-                return NotFound();
-            }
+            var res = new actions.EditAction();
+            await res.OnPostAsync(_context, ticket);
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(ticket);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TicketExists(ticket.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(ticket);
+            return View();
         }
 
         // GET: Tickets/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Ticket == null)
-            {
-                return NotFound();
-            }
+            var res = new actions.DeleteAction();
+            await res.OnGetAsync(id, _context);
 
-            var ticket = await _context.Ticket
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (ticket == null)
-            {
-                return NotFound();
-            }
-
-            return View(ticket);
+            return View();
         }
 
         // POST: Tickets/Delete/5
@@ -148,23 +94,16 @@ namespace TicketProject.Controlles
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Ticket == null)
-            {
-                return Problem("Entity set 'TicketProjectContext.Ticket'  is null.");
-            }
-            var ticket = await _context.Ticket.FindAsync(id);
-            if (ticket != null)
-            {
-                _context.Ticket.Remove(ticket);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var res = new actions.DeleteAction();
+            await res.OnPostAsync(id, _context);
+
+            return View();
         }
 
         private bool TicketExists(int id)
         {
-          return (_context.Ticket?.Any(e => e.Id == id)).GetValueOrDefault();
+          var res = new actions.EditAction();
+          return res.TicketExists(id, _context);
         }
     }
 }
